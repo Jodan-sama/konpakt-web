@@ -15,7 +15,7 @@ type Product = {
 }
 
 // Hardcode your products here — newest releaseDate first
-const allProducts = const allProducts: Product[] = [
+const allProducts: Product[] = [
   {
     id: 'ks1',
     name: 'KS1 // Alleyways Tokyo',
