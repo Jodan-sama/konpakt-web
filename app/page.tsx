@@ -41,7 +41,7 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <div className="flex items-center gap-8">
             <Link href="/">
-              <Image src="/logo.png" alt="KONPAKT" width={240} height={60} priority className="object-contain w-[180px] h-[45px] md:w-[240px] md:h-[60px]" />
+              <Image src="/logo.png" alt="KONPAKT" width={240} height={60} priority className="object-contain w-[200px] h-[50px] md:w-[240px] md:h-[60px]" />
             </Link>
             {!hoveredProduct && (
               <div className="flex items-center gap-6">
@@ -67,7 +67,7 @@ export default function Home() {
             )}
             {hoveredProduct && (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p>{hoveredProduct.code}</p>
+                <p className="text-sm">{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
@@ -111,7 +111,7 @@ export default function Home() {
 
       <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-5">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
@@ -120,7 +120,7 @@ export default function Home() {
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden">
+                  <div className="aspect-square relative overflow-hidden min-w-[200px]">
                     <Image
                       src={product.image}
                       alt={product.code}
@@ -128,7 +128,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal">
+                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal group-hover:underline">
                     {product.code}
                   </p>
                 </Link>
