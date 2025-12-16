@@ -27,9 +27,9 @@ export default function Home() {
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null)
 
   return (
-    <div className="bg-[#fefbda] min-h-screen">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#fefbda]">
-        <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs text-black">
+    <div className="bg-white min-h-screen text-black">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white">
+        <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <Link href="/">
             <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
           </Link>
@@ -77,7 +77,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-light group-hover:underline">
+                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal group-hover:underline">
                     {product.code}
                   </p>
                 </Link>
