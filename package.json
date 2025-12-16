@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "tailwindcss": "^3.4.1",
+"postcss": "^8.4.31",
+"autoprefixer": "^10.4.16",
     "next": "16.0.10",
     "react": "19.2.1",
     "react-dom": "19.2.1"
