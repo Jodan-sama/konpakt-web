@@ -41,7 +41,14 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto py-1 px-4 md:py-1.5 md:px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <div className="flex items-center gap-4 md:gap-8">
             <Link href="/">
-              <Image src="/logo.png" alt="KONPAKT" width={120} height={30} md:width={160} md:height={40} priority className="object-contain" />
+              <Image
+                src="/logo.png"
+                alt="KONPAKT"
+                width={160}
+                height={40}
+                priority
+                className="object-contain w-[120px] h-[30px] md:w-[160px] md:h-[40px]"
+              />
             </Link>
             <div className="hidden md:flex items-center gap-6">
               {sortOpen ? (
