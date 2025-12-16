@@ -23,8 +23,16 @@ const allProducts: Product[] = [
   { id: 'kb1', code: 'KB1', name: 'Studio', category: 'Biosync', price: 5, image: '/images/KB1.R1.jpeg' },
 ]
 
+const categories = ['Product', 'Design', 'Storyware', 'Biosync']
+
 export default function Home() {
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null)
+  const [sortOpen, setSortOpen] = useState(false)
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+
+  const filteredProducts = activeCategory
+    ? allProducts.filter(p => p.category === activeCategory)
+    : allProducts
 
   return (
     <div className="bg-[#fefbda] min-h-screen text-black">
@@ -34,35 +42,51 @@ export default function Home() {
             <Link href="/">
               <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
             </Link>
+            {!hoveredProduct && (
+              <div className="flex items-center gap-6">
+                {sortOpen ? (
+                  categories.map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        setActiveCategory(cat === activeCategory ? null : cat)
+                        setSortOpen(false)
+                      }}
+                      className="hover:text-[#FF6200] transition"
+                    >
+                      {cat}
+                    </button>
+                  ))
+                ) : (
+                  <button onClick={() => setSortOpen(true)} className="hover:text-[#FF6200] transition">
+                    Sort
+                  </button>
+                )}
+              </div>
+            )}
             {hoveredProduct && (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p>{hoveredProduct.code}</p>
+                <p className="text-sm">{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
               </div>
             )}
           </div>
-          {!hoveredProduct && (
-            <div className="flex items-center gap-6">
-              <Link href="#" className="hover:text-[#FF6200] transition">Sort</Link>
-              <Link href="#" className="hover:text-[#FF6200] transition">Img</Link>
-              <Link href="#" className="hover:text-[#FF6200] transition">Txt</Link>
-              <Link href="#" className="hover:text-[#FF6200] transition">Search</Link>
-              <Link href="#" className="hover:text-[#FF6200] transition">Your Account</Link>
-              <Link href="#" className="hover:text-[#FF6200] transition">Logout</Link>
-              <button className="bg-black text-white px-4 py-1 hover:bg-[#FF6200] transition">
-                Cart (0)
-              </button>
-            </div>
-          )}
+          <div className="flex items-center gap-6">
+            <Link href="#" className="hover:text-[#FF6200] transition">Your Account</Link>
+            <Link href="#" className="hover:text-[#FF6200] transition">Logout</Link>
+            <button className="bg-black text-white px-4 py-1 hover:bg-[#FF6200] transition">
+              Cart (0)
+            </button>
+          </div>
         </div>
       </header>
 
       <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-4">
-            {allProducts.map((product) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 auto-rows-auto">
+            {filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="group"
