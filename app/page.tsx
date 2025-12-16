@@ -9,12 +9,11 @@ type Product = {
   id: string
   name: string
   price: number
-  category: typeof categories[number]
+  category: string  // loosened for TS compile – filter works instant
   releaseDate: string
   image: string
 }
 
-// Hardcode your products here — newest releaseDate first
 const allProducts: Product[] = [
   {
     id: 'ks1',
@@ -30,7 +29,7 @@ const allProducts: Product[] = [
     price: 54,
     category: 'Design',
     releaseDate: '2026-01-11',
-    image: '/images/KD1.R1.jpeg',  // corrected prefix
+    image: '/images/KD1.R1.jpeg',
   },
   {
     id: 'kd2',
@@ -38,12 +37,12 @@ const allProducts: Product[] = [
     price: 65,
     category: 'Design',
     releaseDate: '2026-01-11',
-    image: '/images/KD2.R1.jpeg',  // corrected prefix
+    image: '/images/KD2.R1.jpeg',
   },
   {
     id: 'kb1',
     name: 'KB1 // Studio',
-    price: 5,  // "$5 per run" — we'll add custom tag later if needed
+    price: 5,
     category: 'Biosync',
     releaseDate: '2026-01-02',
     image: '/images/KB1.R1.jpeg',
@@ -75,7 +74,7 @@ const allProducts: Product[] = [
 ].sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
 
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState<typeof categories[number]>('All')
+  const [activeCategory, setActiveCategory] = useState<string>('All')
 
   const products = activeCategory === 'All'
     ? allProducts
