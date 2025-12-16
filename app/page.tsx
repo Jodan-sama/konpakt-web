@@ -33,10 +33,10 @@ export default function Home() {
           <Link href="/">
             <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
           </Link>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6">
             {hoveredProduct ? (
-              <div className="flex items-center gap-8">
-                <p className="text-base font-medium">{hoveredProduct.code}</p>
+              <div className="flex items-center gap-6">
+                <p className="text-sm font-medium">{hoveredProduct.code}</p>
                 <p className="text-xs opacity-80">{hoveredProduct.name}</p>
                 <p className="text-xs">{hoveredProduct.category}</p>
                 <p className="text-xs">${hoveredProduct.price}</p>
@@ -77,7 +77,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-light group-hover:underline">
+                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal group-hover:underline">
                     {product.code}
                   </p>
                 </Link>
