@@ -23,15 +23,15 @@ const allProducts: Product[] = [
   { id: 'kb1', code: 'KB1', name: 'Studio', category: 'Biosync', price: 5, image: '/images/KB1.R1.jpeg' },
 ]
 
-const categories = ['Product', 'Design', 'Storyware', 'Biosync']
+const categories = ['ALL', 'PRODUCT', 'DESIGN', 'STORYWARE', 'BIOSYNC']
 
 export default function Home() {
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null)
   const [sortOpen, setSortOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
-  const filteredProducts = activeCategory
-    ? allProducts.filter(p => p.category === activeCategory)
+  const filteredProducts = activeCategory && activeCategory !== 'ALL'
+    ? allProducts.filter(p => p.category.toUpperCase() === activeCategory)
     : allProducts
 
   return (
@@ -49,7 +49,7 @@ export default function Home() {
                     <button
                       key={cat}
                       onClick={() => {
-                        setActiveCategory(cat === activeCategory ? null : cat)
+                        setActiveCategory(cat === 'ALL' ? null : cat)
                         setSortOpen(false)
                       }}
                       className="hover:text-[#FF6200] transition"
@@ -59,14 +59,14 @@ export default function Home() {
                   ))
                 ) : (
                   <button onClick={() => setSortOpen(true)} className="hover:text-[#FF6200] transition">
-                    Sort
+                    SORT
                   </button>
                 )}
               </div>
             )}
             {hoveredProduct && (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p className="text-sm">{hoveredProduct.code}</p>
+                <p>{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
@@ -74,8 +74,8 @@ export default function Home() {
             )}
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-[#FF6200] transition">Your Account</Link>
-            <Link href="#" className="hover:text-[#FF6200] transition">Logout</Link>
+            <Link href="#" className="hover:text-[#FF6200] transition">YOUR ACCOUNT</Link>
+            <Link href="#" className="hover:text-[#FF6200] transition">LOGOUT</Link>
             <button className="bg-black text-white px-4 py-1 hover:bg-[#FF6200] transition">
               Cart (0)
             </button>
@@ -85,7 +85,7 @@ export default function Home() {
 
       <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 auto-rows-auto">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
