@@ -3,8 +3,6 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
-const categories = ['All', 'Product', 'Design', 'Storyware', 'Biosync'] as const
-
 type Product = {
   id: string
   name: string
@@ -15,6 +13,7 @@ type Product = {
 }
 
 const allProducts: Product[] = [
+  // Your drops — newest first, code // name format for bold split
   {
     id: 'ks1',
     name: 'KS1 // Alleyways Tokyo',
@@ -74,61 +73,54 @@ const allProducts: Product[] = [
 ].sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
 
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState<string>('All')
-
-  const products = activeCategory === 'All'
-    ? allProducts
-    : allProducts.filter(p => p.category === activeCategory)
-
   return (
-    <div className="min-h-screen bg-konpaktBlack text-white">
-      <header className="relative z-50 pt-12 pb-24 flex flex-col items-center">
-        <Image
-          src="/logo.png"
-          alt="KONPAKT"
-          width={800}
-          height={200}
-          priority
-          className="object-contain w-full max-w-5xl px-8"
-        />
-        <nav className="mt-20 flex justify-center gap-16 md:gap-32 flex-wrap px-8">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`text-5xl md:text-7xl lg:text-8xl uppercase tracking-wider font-bold transition-colors duration-500 ${
-                activeCategory === cat ? 'text-konpaktOrange' : 'text-white hover:text-konpaktOrange/70'
-              }`}
-            >
-              {cat}
+    <div className="bg-white min-h-screen">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div className="max-w-screen-2xl mx-auto py-4 px-8 flex justify-between items-center">
+          <Image
+            src="/logo.png"
+            alt="KONPAKT"
+            width={300}
+            height={80}
+            priority
+            className="object-contain"
+          />
+          <div className="flex items-center gap-8 uppercase tracking-wider text-sm">
+            <a href="#" className="hover:text-konpaktOrange transition">Your Account</a>
+            <a href="#" className="hover:text-konpaktOrange transition">Logout</a>
+            <button className="bg-black text-white px-6 py-3 hover:bg-konpaktOrange transition">
+              Cart (0)
             </button>
-          ))}
-        </nav>
+          </div>
+        </div>
       </header>
 
-      <main className="px-8 md:px-16 lg:px-32 -mt-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24 lg:gap-32">
-          {products.map((product) => (
+      <main className="pt-32 px-4 md:px-8 lg:px-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 md:gap-6 lg:gap-8">
+          {allProducts.map((product) => (
             <div key={product.id} className="group cursor-pointer">
-              <div className="aspect-square relative overflow-hidden">
+              <div className="aspect-square relative overflow-hidden bg-gray-100">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  priority
-                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-1000" />
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-black/20 transition" />
               </div>
-              <div className="mt-12 text-center">
-                <h3 className="text-4xl md:text-6xl uppercase tracking-widest font-bold">{product.name.split(' // ')[0]}</h3>
-                <p className="text-2xl md:text-4xl uppercase tracking-wider mt-4 opacity-80">{product.name.split(' // ')[1]}</p>
-                <p className="text-konpaktOrange text-3xl md:text-5xl mt-8 font-light">${product.price}</p>
+              <div className="mt-6 text-center">
+                <h3 className="text-lg md:text-xl uppercase tracking-widest font-bold">
+                  {product.name.split(' // ')[0]}
+                </h3>
+                {/* Name smaller/opacity if needed, or hide for pure code feel */}
+                <p className="text-sm uppercase tracking-wide opacity-70 mt-1">
+                  {product.name.split(' // ')[1]}
+                </p>
+                {/* Price orange on hover/detail later – hidden on grid for Acronym purity */}
               </div>
             </div>
           ))}
         </div>
-        <div className="h-32" /> {/* bottom breathing room */}
       </main>
     </div>
   )
