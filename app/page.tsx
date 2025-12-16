@@ -34,6 +34,8 @@ export default function Home() {
     ? allProducts.filter(p => p.category.toUpperCase() === activeCategory)
     : allProducts
 
+  const dotCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><text y='15' font-size='20' fill='black'>・</text></svg>") 10 10, pointer`
+
   return (
     <div className="bg-[#fefbda] min-h-screen text-black">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#fefbda]">
@@ -74,8 +76,7 @@ export default function Home() {
             )}
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-[#FF6200] transition">YOUR ACCOUNT</Link>
-            <Link href="#" className="hover:text-[#FF6200] transition">LOGOUT</Link>
+            <Link href="#" className="hover:text-[#FF6200] transition">LOGIN</Link>
             <button className="bg-black text-white px-4 py-1 hover:bg-[#FF6200] transition">
               Cart (0)
             </button>
@@ -85,16 +86,17 @@ export default function Home() {
 
       <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-6">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="group"
+                style={{ cursor: dotCursor }}
                 onMouseEnter={() => setHoveredProduct(product)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden">
+                  <div className="aspect-square relative overflow-hidden min-w-[160px]">
                     <Image
                       src={product.image}
                       alt={product.code}
