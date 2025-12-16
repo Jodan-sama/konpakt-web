@@ -36,7 +36,7 @@ export default function Home() {
           <div className="flex items-center gap-6">
             {hoveredProduct ? (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p>{hoveredProduct.code}</p>
+                <p className="text-sm">{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
@@ -58,32 +58,30 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="pt-14">
-        <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-4">
-            {allProducts.map((product) => (
-              <div
-                key={product.id}
-                className="group"
-                onMouseEnter={() => setHoveredProduct(product)}
-                onMouseLeave={() => setHoveredProduct(null)}
-              >
-                <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.code}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal group-hover:underline">
-                    {product.code}
-                  </p>
-                </Link>
-              </div>
-            ))}
-          </div>
+      <main className="pt-14 max-w-screen-2xl mx-auto px-8">
+        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-4">
+          {allProducts.map((product) => (
+            <div
+              key={product.id}
+              className="group"
+              onMouseEnter={() => setHoveredProduct(product)}
+              onMouseLeave={() => setHoveredProduct(null)}
+            >
+              <Link href={`/products/${product.id}`} className="block">
+                <div className="aspect-square relative overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.code}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal group-hover:underline">
+                  {product.code}
+                </p>
+              </Link>
+            </div>
+          ))}
         </div>
       </main>
     </div>
