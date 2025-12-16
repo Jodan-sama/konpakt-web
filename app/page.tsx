@@ -38,41 +38,43 @@ export default function Home() {
   return (
     <div className="bg-[#fefbda] min-h-screen text-black">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#fefbda]">
-        <div className="max-w-screen-2xl mx-auto py-1 px-4 md:py-1.5 md:px-8 flex justify-between items-center uppercase tracking-widest text-xs">
-          <div className="flex items-center gap-4 md:gap-8">
+        <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
+          <div className="flex items-center gap-8">
             <Link href="/">
-              <Image src="/logo.png" alt="KONPAKT" width={220} height={55} priority className="object-contain w-[140px] h-[35px] md:w-[220px] md:h-[55px]" />
+              <Image src="/logo.png" alt="KONPAKT" width={240} height={60} priority className="object-contain w-[180px] h-[45px] md:w-[240px] md:h-[60px]" />
             </Link>
-            <div className="hidden md:flex items-center gap-6">
-              {sortOpen ? (
-                categories.map(cat => (
-                  <button
-                    key={cat}
-                    onClick={() => {
-                      setActiveCategory(cat === 'ALL' ? null : cat)
-                      setSortOpen(false)
-                    }}
-                    className="hover:text-[#FF6200] transition"
-                  >
-                    {cat}
+            {!hoveredProduct && (
+              <div className="flex items-center gap-6">
+                {sortOpen ? (
+                  categories.map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        setActiveCategory(cat === 'ALL' ? null : cat)
+                        setSortOpen(false)
+                      }}
+                      className="hover:text-[#FF6200] transition"
+                    >
+                      {cat}
+                    </button>
+                  ))
+                ) : (
+                  <button onClick={() => setSortOpen(true)} className="hover:text-[#FF6200] transition">
+                    SORT
                   </button>
-                ))
-              ) : (
-                <button onClick={() => setSortOpen(true)} className="hover:text-[#FF6200] transition">
-                  SORT
-                </button>
-              )}
-            </div>
+                )}
+              </div>
+            )}
             {hoveredProduct && (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p className="text-sm">{hoveredProduct.code}</p>
+                <p>{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
               </div>
             )}
           </div>
-          <div className="flex items-center gap-4 md:gap-6">
+          <div className="flex items-center gap-6">
             <Link href="#" className="hover:text-[#FF6200] transition">LOGIN</Link>
             <button onClick={() => setCartOpen(!cartOpen)} className="bg-black text-white px-4 py-1 hover:bg-[#95ad46] transition flex items-center gap-1">
               <span>←</span> Cart (0)
@@ -107,9 +109,9 @@ export default function Home() {
         </div>
       )}
 
-      <main className="pt-16 md:pt-20">
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3 md:gap-4">
+      <main className="pt-20">
+        <div className="max-w-screen-2xl mx-auto px-8">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
@@ -118,7 +120,7 @@ export default function Home() {
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden min-w-[180px]">
+                  <div className="aspect-square relative overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.code}
@@ -126,7 +128,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal group-hover:underline">
+                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-normal">
                     {product.code}
                   </p>
                 </Link>
