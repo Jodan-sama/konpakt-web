@@ -15,18 +15,63 @@ type Product = {
 }
 
 // Hardcode your products here — newest releaseDate first
-const allProducts = [
+const allProducts = const allProducts: Product[] = [
   {
-    id: '1',
-    name: 'Example Jacket',
-    price: 850,
-    category: 'Product',
-    releaseDate: '2025-12-10',
-    image: 'https://source.unsplash.com/random/800x800/?techwear,black', // replace with your /images/...
+    id: 'ks1',
+    name: 'KS1 // Alleyways Tokyo',
+    price: 30,
+    category: 'Storyware',
+    releaseDate: '2026-01-15',
+    image: '/images/KS1.R1.jpeg',
   },
-  // Add your real products (few per category)
-  // Example:
-  // { id: '2', name: 'Biosync Module', price: 320, category: 'Biosync', releaseDate: '2025-11-20', image: '/images/biosync1.jpg' },
+  {
+    id: 'kd1',
+    name: 'KD1 // Cups',
+    price: 54,
+    category: 'Design',
+    releaseDate: '2026-01-11',
+    image: '/images/KD1.R1.jpeg',  // corrected prefix
+  },
+  {
+    id: 'kd2',
+    name: 'KD2 // Bowls',
+    price: 65,
+    category: 'Design',
+    releaseDate: '2026-01-11',
+    image: '/images/KD2.R1.jpeg',  // corrected prefix
+  },
+  {
+    id: 'kb1',
+    name: 'KB1 // Studio',
+    price: 5,  // "$5 per run" — we'll add custom tag later if needed
+    category: 'Biosync',
+    releaseDate: '2026-01-02',
+    image: '/images/KB1.R1.jpeg',
+  },
+  {
+    id: 'kp1',
+    name: 'KP1 // Tenugui',
+    price: 22,
+    category: 'Product',
+    releaseDate: '2026-01-01',
+    image: '/images/KP1.R1.jpeg',
+  },
+  {
+    id: 'kp2',
+    name: 'KP2 // Toothbrush',
+    price: 122,
+    category: 'Product',
+    releaseDate: '2026-01-01',
+    image: '/images/KP2.R1.jpeg',
+  },
+  {
+    id: 'kp3',
+    name: 'KP3 // Chopstick Spoon',
+    price: 122,
+    category: 'Product',
+    releaseDate: '2026-01-01',
+    image: '/images/KP3.R1.jpeg',
+  },
 ].sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
 
 export default function Home() {
