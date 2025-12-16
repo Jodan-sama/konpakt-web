@@ -41,7 +41,7 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <div className="flex items-center gap-8">
             <Link href="/">
-              <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
+              <Image src="/logo.png" alt="KONPAKT" width={240} height={60} priority className="object-contain w-[200px] h-[50px] md:w-[240px] md:h-[60px]" />
             </Link>
             {!hoveredProduct && (
               <div className="flex items-center gap-6">
@@ -67,7 +67,7 @@ export default function Home() {
             )}
             {hoveredProduct && (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p>{hoveredProduct.code}</p>
+                <p className="text-sm">{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Small Cart Sidebar */}
+      {/* Small Minimal Cart Sidebar */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 pointer-events-none">
           <div className="absolute inset-0 bg-black/50 pointer-events-auto" onClick={() => setCartOpen(false)} />
@@ -120,7 +120,7 @@ export default function Home() {
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden min-w-[160px]">
+                  <div className="aspect-square relative overflow-hidden min-w-[220px]">
                     <Image
                       src={product.image}
                       alt={product.code}
