@@ -41,14 +41,7 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto py-1 px-4 md:py-1.5 md:px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <div className="flex items-center gap-4 md:gap-8">
             <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="KONPAKT"
-                width={160}
-                height={40}
-                priority
-                className="object-contain w-[120px] h-[30px] md:w-[160px] md:h-[40px]"
-              />
+              <Image src="/logo.png" alt="KONPAKT" width={220} height={55} priority className="object-contain w-[140px] h-[35px] md:w-[220px] md:h-[55px]" />
             </Link>
             <div className="hidden md:flex items-center gap-6">
               {sortOpen ? (
@@ -81,18 +74,18 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4 md:gap-6">
             <Link href="#" className="hover:text-[#FF6200] transition">LOGIN</Link>
-            <button onClick={() => setCartOpen(!cartOpen)} className="bg-black text-white px-4 py-1 hover:bg-[#95ad46] transition">
-              Cart (0)
+            <button onClick={() => setCartOpen(!cartOpen)} className="bg-black text-white px-4 py-1 hover:bg-[#95ad46] transition flex items-center gap-1">
+              <span>←</span> Cart (0)
             </button>
           </div>
         </div>
       </header>
 
-      {/* Cart Sidebar Small */}
+      {/* Small Cart Sidebar */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 pointer-events-none">
           <div className="absolute inset-0 bg-black/50 pointer-events-auto" onClick={() => setCartOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-black text-white pointer-events-auto flex flex-col">
+          <div className="absolute right-0 top-0 h-full w-full max-w-xs bg-black text-white pointer-events-auto flex flex-col">
             <div className="p-6 flex justify-between items-center uppercase tracking-widest text-xs border-b border-white/20">
               <p>YOUR ACCOUNT 0 ITEMS TOTAL</p>
               <button onClick={() => setCartOpen(false)} className="hover:text-[#95ad46] transition">
@@ -116,7 +109,7 @@ export default function Home() {
 
       <main className="pt-16 md:pt-20">
         <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3 md:gap-4">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
@@ -125,7 +118,7 @@ export default function Home() {
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden">
+                  <div className="aspect-square relative overflow-hidden min-w-[180px]">
                     <Image
                       src={product.image}
                       alt={product.code}
