@@ -29,15 +29,14 @@ export default function Home() {
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null)
   const [sortOpen, setSortOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [cartOpen, setCartOpen] = useState(false)
 
   const filteredProducts = activeCategory && activeCategory !== 'ALL'
     ? allProducts.filter(p => p.category.toUpperCase() === activeCategory)
     : allProducts
 
-  const dotCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><text y='15' font-size='20' fill='black'>・</text></svg>") 10 10, pointer`
-
   return (
-    <div className="bg-[#fefbda] min-h-screen text-black">
+    <div className="bg-[#fefbda] min-h-screen text-black relative">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#fefbda]">
         <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <div className="flex items-center gap-8">
@@ -54,13 +53,13 @@ export default function Home() {
                         setActiveCategory(cat === 'ALL' ? null : cat)
                         setSortOpen(false)
                       }}
-                      className="hover:text-[#FF6200] transition"
+                      className="hover:text-[#95ad46] transition"
                     >
                       {cat}
                     </button>
                   ))
                 ) : (
-                  <button onClick={() => setSortOpen(true)} className="hover:text-[#FF6200] transition">
+                  <button onClick={() => setSortOpen(true)} className="hover:text-[#95ad46] transition">
                     SORT
                   </button>
                 )}
@@ -76,27 +75,52 @@ export default function Home() {
             )}
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-[#FF6200] transition">LOGIN</Link>
-            <button className="bg-black text-white px-4 py-1 hover:bg-[#FF6200] transition">
+            <Link href="#" className="hover:text-[#95ad46] transition">LOGIN</Link>
+            <button onClick={() => setCartOpen(!cartOpen)} className="bg-black text-white px-4 py-1 hover:bg-[#95ad46] transition">
               Cart (0)
             </button>
           </div>
         </div>
       </header>
 
+      {/* Cart Sidebar */}
+      {cartOpen && (
+        <div className="fixed inset-0 z-50">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setCartOpen(false)} />
+          <div className="absolute right-0 top-0 h-full w-96 bg-black text-white flex flex-col">
+            <div className="p-8 flex justify-between items-center uppercase tracking-widest text-xs border-b border-white/20">
+              <p>YOUR ACCOUNT 0 ITEMS TOTAL</p>
+              <button onClick={() => setCartOpen(false)} className="hover:text-[#95ad46] transition">
+                CLOSE CART
+              </button>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <p className="text-center uppercase tracking-widest">Your cart is empty</p>
+            </div>
+            <div className="p-8 flex gap-4 uppercase tracking-widest text-xs">
+              <button className="flex-1 bg-white text-black py-4 hover:bg-[#95ad46] hover:text-white transition">
+                VIEW CART
+              </button>
+              <button className="flex-1 bg-white text-black py-4 hover:bg-[#95ad46] hover:text-white transition">
+                ORDER NOW
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-4">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="group"
-                style={{ cursor: dotCursor }}
                 onMouseEnter={() => setHoveredProduct(product)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden min-w-[160px]">
+                  <div className="aspect-square relative overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.code}
@@ -111,8 +135,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
