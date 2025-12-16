@@ -67,7 +67,7 @@ export default function Home() {
             )}
             {hoveredProduct && (
               <div className="flex items-center gap-6 text-xs font-normal">
-                <p>{hoveredProduct.code}</p>
+                <p className="text-sm">{hoveredProduct.code}</p>
                 <p className="opacity-80">{hoveredProduct.name}</p>
                 <p>{hoveredProduct.category}</p>
                 <p>${hoveredProduct.price}</p>
@@ -76,6 +76,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-6">
             <Link href="#" className="hover:text-[#95ad46] transition">LOGIN</Link>
+            <span className="text-xs">PANEL</span>
             <button onClick={() => setCartOpen(!cartOpen)} className="bg-black text-white px-4 py-1 hover:bg-[#95ad46] transition">
               Cart (0)
             </button>
@@ -83,19 +84,19 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Cart Sidebar */}
+      {/* Cart Sidebar Exact */}
       {cartOpen && (
-        <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setCartOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-96 bg-black text-white flex flex-col">
+        <div className="fixed inset-0 z-50 pointer-events-none">
+          <div className="absolute inset-0 bg-black/50 pointer-events-auto" onClick={() => setCartOpen(false)} />
+          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-black text-white pointer-events-auto flex flex-col">
             <div className="p-8 flex justify-between items-center uppercase tracking-widest text-xs border-b border-white/20">
               <p>YOUR ACCOUNT 0 ITEMS TOTAL</p>
               <button onClick={() => setCartOpen(false)} className="hover:text-[#95ad46] transition">
                 CLOSE CART
               </button>
             </div>
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-center uppercase tracking-widest">Your cart is empty</p>
+            <div className="flex-1 flex items-center justify-center uppercase tracking-widest text-center px-8">
+              <p>Your cart is empty</p>
             </div>
             <div className="p-8 flex gap-4 uppercase tracking-widest text-xs">
               <button className="flex-1 bg-white text-black py-4 hover:bg-[#95ad46] hover:text-white transition">
@@ -135,8 +136,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   )
 }
