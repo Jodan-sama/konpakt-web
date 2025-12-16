@@ -33,11 +33,58 @@ export default function Home() {
           <Link href="/">
             <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
           </Link>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             {hoveredProduct ? (
-              <div className="flex items-center gap-6">
-                <p className="text-sm font-medium">{hoveredProduct.code}</p>
+              <div className="flex items-center gap-8">
+                <p className="text-base font-medium">{hoveredProduct.code}</p>
                 <p className="text-xs opacity-80">{hoveredProduct.name}</p>
                 <p className="text-xs">{hoveredProduct.category}</p>
                 <p className="text-xs">${hoveredProduct.price}</p>
-              </
+              </div>
+            ) : (
+              <>
+                <Link href="#" className="hover:text-konpaktOrange transition">Sort</Link>
+                <Link href="#" className="hover:text-konpaktOrange transition">Img</Link>
+                <Link href="#" className="hover:text-konpaktOrange transition">Txt</Link>
+                <Link href="#" className="hover:text-konpaktOrange transition">Search</Link>
+                <Link href="#" className="hover:text-konpaktOrange transition">Your Account</Link>
+                <Link href="#" className="hover:text-konpaktOrange transition">Logout</Link>
+                <button className="bg-black text-white px-4 py-1 hover:bg-konpaktOrange transition">
+                  Cart (0)
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <main className="pt-14">
+        <div className="max-w-screen-2xl mx-auto px-8">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-4">
+            {allProducts.map((product) => (
+              <div
+                key={product.id}
+                className="group"
+                onMouseEnter={() => setHoveredProduct(product)}
+                onMouseLeave={() => setHoveredProduct(null)}
+              >
+                <Link href={`/products/${product.id}`} className="block">
+                  <div className="aspect-square relative overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt={product.code}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="mt-3 text-left text-xs uppercase tracking-widest font-light group-hover:underline">
+                    {product.code}
+                  </p>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
+    )
+}
