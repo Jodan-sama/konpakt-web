@@ -41,7 +41,7 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
           <div className="flex items-center gap-8">
             <Link href="/">
-              <Image src="/logo.png" alt="KONPAKT" width={240} height={60} priority className="object-contain w-[240px] h-[60px]" />
+              <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
             </Link>
             {!hoveredProduct && (
               <div className="flex items-center gap-6">
@@ -111,7 +111,7 @@ export default function Home() {
 
       <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-8">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
@@ -120,7 +120,7 @@ export default function Home() {
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href={`/products/${product.id}`} className="block">
-                  <div className="aspect-square relative overflow-hidden min-w-[240px]">
+                  <div className="aspect-square relative overflow-hidden min-w-[160px]">
                     <Image
                       src={product.image}
                       alt={product.code}
