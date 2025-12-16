@@ -5,16 +5,25 @@ import { useState } from 'react'
 import { notFound } from 'next/navigation'
 
 const products: Record<string, any> = {
-  ks1: {
-    code: 'KS1',
-    name: 'Alleyways Tokyo',
-    price: 30,
-    images: ['/images/KS1.R1.jpeg', '/images/KS1.R2.jpeg'],
-    description: 'Detailed description...',
-    fabric: 'Fabric technology...',
-    sizing: 'Sizing chart...',
+  kp1: {
+    code: 'KP1',
+    name: 'Tenugui',
+    price: 22,
+    images: ['/images/KP1.R1.jpeg', '/images/KP1.R2.jpeg' /* add all .R* */],
+    description: 'Lightweight cotton tenugui.',
+    fabric: '100% cotton.',
+    sizing: '35x90cm.',
   },
-  // Add all others with .R* arrays
+  kp2: {
+    code: 'KP2',
+    name: 'Toothbrush',
+    price: 122,
+    images: ['/images/KP2.R1.jpeg', '/images/KP2.R2.jpeg', '/images/KP2.R3.jpeg'],
+    description: 'Precision toothbrush.',
+    fabric: 'Bamboo/nylon.',
+    sizing: 'One size.',
+  },
+  // Add all with real data + .R* arrays
 }
 
 export default function ProductPage({ params }: { params: { id: string } }) {
@@ -24,10 +33,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const [mainImage, setMainImage] = useState(product.images[0])
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Copy header from homepage */}
+    <div className="bg-[#fefbda] min-h-screen">
+      {/* Copy header from homepage – hover works on grid */}
 
-      <main className="pt-20 px-6 md:px-16 lg:px-32 max-w-screen-2xl mx-auto">
+      <main className="pt-14 px-8 md:px-16 lg:px-32 max-w-screen-2xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="relative aspect-square lg:aspect-[3/4]">
             <Image src={mainImage} alt={product.name} fill className="object-cover" />
@@ -41,8 +50,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             </div>
 
             <div>
-              <select className="border border-black px-6 py-4 w-full uppercase tracking-widest text-sm">
-                <option>Size</option>
+              <select className="border border-black px-6 py-4 w-full uppercase tracking-widest text-sm bg-white">
+                <option>Select Size</option>
               </select>
               <button className="mt-4 bg-black text-white px-8 py-5 w-full uppercase tracking-widest hover:bg-konpaktOrange transition">
                 Buy Now
