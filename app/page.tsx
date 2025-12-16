@@ -27,29 +27,29 @@ export default function Home() {
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null)
 
   return (
-    <div className="bg-[#fefbda] min-h-screen text-black">
+    <div className="bg-[#fefbda] min-h-screen">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#fefbda]">
-        <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs">
+        <div className="max-w-screen-2xl mx-auto py-1.5 px-8 flex justify-between items-center uppercase tracking-widest text-xs text-black">
           <Link href="/">
             <Image src="/logo.png" alt="KONPAKT" width={160} height={40} priority className="object-contain" />
           </Link>
           <div className="flex items-center gap-6">
             {hoveredProduct ? (
-              <div className="flex items-center gap-6">
-                <p className="text-sm font-normal">{hoveredProduct.code}</p>
-                <p className="text-xs opacity-80">{hoveredProduct.name}</p>
-                <p className="text-xs">{hoveredProduct.category}</p>
-                <p className="text-xs">${hoveredProduct.price}</p>
+              <div className="flex items-center gap-6 text-xs font-normal">
+                <p className="text-sm">{hoveredProduct.code}</p>
+                <p className="opacity-80">{hoveredProduct.name}</p>
+                <p>{hoveredProduct.category}</p>
+                <p>${hoveredProduct.price}</p>
               </div>
             ) : (
               <>
-                <Link href="#" className="hover:text-konpaktOrange transition">Sort</Link>
-                <Link href="#" className="hover:text-konpaktOrange transition">Img</Link>
-                <Link href="#" className="hover:text-konpaktOrange transition">Txt</Link>
-                <Link href="#" className="hover:text-konpaktOrange transition">Search</Link>
-                <Link href="#" className="hover:text-konpaktOrange transition">Your Account</Link>
-                <Link href="#" className="hover:text-konpaktOrange transition">Logout</Link>
-                <button className="bg-black text-white px-4 py-1 hover:bg-konpaktOrange transition">
+                <Link href="#" className="hover:text-[#FF6200] transition">Sort</Link>
+                <Link href="#" className="hover:text-[#FF6200] transition">Img</Link>
+                <Link href="#" className="hover:text-[#FF6200] transition">Txt</Link>
+                <Link href="#" className="hover:text-[#FF6200] transition">Search</Link>
+                <Link href="#" className="hover:text-[#FF6200] transition">Your Account</Link>
+                <Link href="#" className="hover:text-[#FF6200] transition">Logout</Link>
+                <button className="bg-black text-white px-4 py-1 hover:bg-[#FF6200] transition">
                   Cart (0)
                 </button>
               </>
