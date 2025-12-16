@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Small Cart Sidebar */}
+      {/* Mini Cart Sidebar */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 pointer-events-none">
           <div className="absolute inset-0 bg-black/50 pointer-events-auto" onClick={() => setCartOpen(false)} />
