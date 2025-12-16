@@ -109,7 +109,7 @@ export default function Home() {
         </div>
       )}
 
-      <main className="">
+      <main className="pt-20">
         <div className="max-w-screen-2xl mx-auto px-8">
           <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-6">
             {filteredProducts.map((product) => (
